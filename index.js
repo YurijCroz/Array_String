@@ -3,7 +3,13 @@
 let array1=[10,20,30,-40,-50,-60,70,80,90];
 //===1.1===>
 
-let arrayNew1 = array1.filter((element) => element>0);
+let arrayNew1 = array1.filter(el => el>0);
+console.log(arrayNew1);
+
+//===1.2===>
+
+arrayNew1=[];
+array1.forEach(el => {if (el>0) arrayNew1.push(el)})
 console.log(arrayNew1);
 
 //!2 Найдите сумму элементов массива которые меньше 100 по значению
@@ -11,8 +17,22 @@ console.log(arrayNew1);
 let array2=[200,300,20,40,60,80,100,120];
 //===2.1===>
 
-let arraySum = array2.filter(el => el<100).reduce((preValue, curValue) => preValue + curValue);
-console.log(arraySum);
+function sumOfElementsLessThanLimit1(array, limit=100) {
+    let arraySum=array.filter(el => el<limit).reduce((preValue, curValue) => preValue + curValue);
+    console.log(arraySum);
+    return arraySum;
+}
+sumOfElementsLessThanLimit1(array2)
+
+//===2.2===>
+
+function sumOfElementsLessThanLimit2(array, limit=100) {
+    let arraySum=0;
+    array.forEach(el => { if (el<limit) arraySum+=el})
+    console.log(arraySum);
+    return arraySum;
+}
+sumOfElementsLessThanLimit2(array2)
 
 //!3 Уменьшите каждый элемент массива на 3%
 
@@ -36,7 +56,6 @@ function magnifier(array){
 magnifier(array4);
 magnifier(array3);
 
-
 //!5 Проверьте является ли слово палиндромом (например слово abcddcba подходит т.к. оно "зеркальное")
 
 let word1='tenet', word2='array';
@@ -49,6 +68,16 @@ function palindrome(word) {
 }
 palindrome(word1);
 palindrome(word2);
+
+//===5.2===>
+
+function palindromeThreeDots(word) {
+    word === [...word].reverse().join('')
+    ? console.log('Да')
+    : console.log('Нет')
+}
+palindromeThreeDots(word1);
+palindromeThreeDots(word2);
 
 //!6 Соедините две строки в одну и переверните наоборот
 
